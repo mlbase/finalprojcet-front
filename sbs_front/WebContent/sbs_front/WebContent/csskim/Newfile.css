@@ -1,0 +1,12 @@
+@charset "EUC-KR";
+
+.Catalog_intro .container{
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Catalog_intro .container .list_intro_left{
+    flex:1.5;
+}

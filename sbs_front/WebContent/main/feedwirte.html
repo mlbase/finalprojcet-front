@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>피드작성</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<form id="frm">
+<table border="1">
+	<tr>
+		<td>nickname</td>
+		<td>
+			<input type="text" id="nickname" name="nickname" placeholder="nickname입력" size="20">
+		</td>
+	</tr>
+	<tr>
+		<td>내용</td>
+		<td>
+			<input type="text" id="content" name="content" placeholder="내용입력" size="20">
+		</td>
+	</tr>
+	<tr>
+		<td>tag</td>
+		<td>
+			<input type="text" id="tag" name="tag" placeholder="tag입력">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<button type="button" id="postfeed">feed 작성</button>
+		</td>
+	</tr>
+</table>	
+</form>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#postfeed").on("click", function(){
+		let params = $("#frm").serialize();
+		
+		$.ajax({
+			url:"http://localhost:3000/feed",
+			type:"post",
+			data:params,
+			success:function(resp){
+			//	alert('success');
+				if(resp == "OK"){
+					alert("feed 업로드에 성공했습니다.");	
+				}else{
+					alert("feed 업로드에 실패했습니다.");
+				}			
+			},
+			error:function(){
+				alert('error');
+			}	
+			
+		});
+		
+	});
+	
+});
+</script>
+</body>
+</html>

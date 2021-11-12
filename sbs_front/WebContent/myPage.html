@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+<head>
+<meta charset="UTF-8">
+<title>MyPage</title>
+<link rel="stylesheet" href="cssKwak/myPage.css">
+</head>
+<body>
+<div class="container1">
+	<div class="left">left</div>
+	<div class="content">content<br>
+		<div class="profile-image">
+			<img src="abc.jpg" onerror="this.src='images/profile.jpg'" class="img-thumbnail">		
+		</div>
+		<div id=button-area2><button id=btn1 type="button">사진수정</button></div>	
+		<div class="personal_info">
+			<table id="table1" border="1">
+				<tr>
+				<th>아이디</th>
+				<td><input type="text" name="id" placeholder="가져온 아이디(고정)" readonly></td>
+				</tr>
+				<tr>
+				<th>닉네임</th>
+				<td><input type="text" name="nickname" placeholder="가져온 닉네임"></td>
+				</tr>
+				<tr>
+				<th>이름</th>
+				<td><input type="text" name="name" placeholder="가져온 이름(고정)" readonly></td>				
+				</tr>
+				<tr>
+				<th>생년월일</th>
+				<td><input type="text" name="birth" placeholder="가져온 생년월일(고정)" readonly></td>				
+				</tr>
+				<tr>
+				<th>이메일</th>
+				<td><input type="text" name="email" placeholder="가져온 이메일"></td>				
+				</tr>
+				<tr>
+				<th>주소</th>
+				<td><input type="text" name="address" placeholder="가져온 주소"></td>
+				</tr>
+				<tr>
+				<th>Intro</th>
+				<td><input type="text" name="introduce" placeholder="가져온 소개"></td>
+				</tr>			
+			</table>
+		</div>
+		<div class="button-area">
+		<button id=btn2 type="button">수정</button>
+		<button id=btn3 type="button">비밀번호 변경</button>		
+		</div>
+	</div>
+	<div class="right">right</div>
+</div>
+</body>
+</html>

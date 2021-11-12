@@ -1,0 +1,140 @@
+.container1{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 10vw 30vw 50vw 10vw;
+	grid-template-rows:  55vh 10vh 35vh;
+	height: 100vh;
+	grid-template-areas:
+						'left picture content right'
+						'left button-area content right'
+						'left info content right';
+	margin-bottom:2.0em;
+					
+}
+.container1 div {
+	background-color: white;
+	border: 1px solid #000;
+}
+.header{
+	grid-area:header;
+}
+.left{
+	grid-area:left;
+}
+.picture{
+	grid-area:picture;
+}
+.button-area{
+	grid-area:button-area;
+	display:table-cell;
+	vertical-align:middle;	
+
+}
+#btn{
+	margin-top:0;
+}
+.info{
+	grid-area:info;
+}
+.content{
+	grid-area:content;
+}
+.right{
+	grid-area:right;
+}
+.footer{
+	grid-area:footer;
+}
+
+.profile-image {
+    width: 200px;
+    height:200px; 
+    border-radius: 70%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 7vh;
+}
+
+.img-thumbnail1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#profile-nickname {
+	margin-top: 20px;
+	color: black;	
+	font-weight:bold;
+	font-size:25px;
+	text-align:center;
+}
+#profile-birth {
+	margin-top: 5px;
+	color: black;		
+	font-size:18px;
+	text-align:center;
+}
+#profile-email {
+	margin-top: 5px;
+	color: black;	
+	font-size:18px;
+	text-align:center;
+}
+.button{
+	text-align:center;
+	margin-top:31px;
+	
+}
+#btn1{
+	
+}
+#btn2{
+	
+}
+#btn3{
+	
+}
+#btn4{
+	
+}
+#intro{
+	margin-top: 3px;
+	color: black;	
+	font-size:18px;
+	text-align:left;	
+}
+#FavBooks{
+	margin-top: 3px;
+	color: black;	
+	font-size:18px;
+	text-align:left;	
+}
+/*-----------------------------  */
+/* #divContent {
+	width:400px;
+	display:block;
+	margin: 0 auto;
+	border: 2px solid black;
+	text-align: center;
+}
+
+#listEnd {
+	width:400px;
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 2px solid black;
+	text-align: center;
+}
+.item{
+	width:300px;
+	height:50px;	
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid black;
+	text-align: center;
+	line-height: 50px;
+} */

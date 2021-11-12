@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>장바구니 작성</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>장바구니작성</h1>
+<div id="app">	
+	<form id="frm">
+	<input type="hidden" id="seq" name="bookSeq" value="">
+	<input type="hidden" id="price" name="price" value="">
+	<input type="hidden" id="deliveryFee" name="deliveryFee" value="">
+	<table border="1">
+	<tr>
+		<td>아이디</td>
+		<td>
+			<input type="text" id="id" name="id" placeholder="아이디입력" size="20">
+			<p id="idcheck"></p>
+			<button type="button" id="idcheckbtn">아이디확인</button>
+		</td>
+	</tr>
+		<td>책제목</td>
+		<td>
+			<input type="text" id="title" name="title" placeholder="제목입력" size="50">
+			<button type="button" id="checkbtn">책정보 불러오기</button>
+		</td>
+	</tr>	
+	<tr>
+		<td>작가</td>
+		<td>
+			<span id="writer" name="writer"></span>
+		</td>
+	</tr>
+	<tr>
+		<td>출판사</td>
+		<td>
+			<span id="publisher" name="publisher"></span>
+		</td>
+	</tr>
+	<tr>
+		<td>가격</td>
+		<td>
+			<span id="showprice" name="showprice"></span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>isbn</td>
+		<td>
+			<span id="isbn" name="isbn"></span>
+		</td>
+	</tr>	
+	<tr>
+		<td>출판일</td>
+		<td>
+			<span id="publishDate" name="publishDate" ></span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>분류</td>
+		<td>
+			<span id="sort" name="sort"></span>
+		</td>
+	</tr>
+	<tr>
+		<td>장르</td>
+		<td>
+			<span id="genre" name="genre"></span>
+		</td>
+	</tr>
+	<tr>
+		<td>배송비</td>
+		<td>
+			<span id="delivery_fee" name="delivery_fee"></span>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<button type="button" id="postwishlist">장바구니 작성</button>
+		</td>
+	</tr>
+	<tr>
+		<td>수량</td>
+		<td>
+			<input type="number" id="bookCount" name="bookCount" placeholder="1">
+		</td>
+	</tr>		
+	</table>
+	</form>	
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#checkbtn").click(function () {
+		$.ajax({
+			url:"http://localhost:3000/book",
+			type:"get",
+			data:{ title:$("#title").val() },
+			success:function( resp ){
+				//alert(resp.price);
+				$("#seq").val(resp.seq);
+				$("#writer").html(resp.writer);
+				$("#publisher").html(resp.publisher);
+				$("#showprice").html(resp.price);
+				$("#isbn").html(resp.isbn);
+				$("#publishDate").html(resp.publishDate);
+				$("#delivery_fee").html(resp.deliveryFee);
+				$("#sort").html(resp.sort);
+				$("#genre").html(resp.genre);
+				$("#price").val(resp.price);
+				$("#deliveryFee").val(resp.deliveryFee)
+			},
+			error:function(){
+				alert('error');
+			}
+		});
+	});
+	
+	$("#postwishlist").on("click",function () {
+		
+		let params = $("#frm").serialize();
+		console.log(params);
+		
+		$.ajax({
+			url:"http://localhost:3000/wish",
+			type:"post",
+			data:params,
+			success:function(resp){
+			//	alert('success');
+				if(resp == "OK"){
+					alert("장바구니 업로드에 성공했습니다.");	
+				}else{
+					alert("장바구니 업로드에 실패했습니다.");
+				}			
+			},
+			error:function(){
+				alert('error');
+			}			
+		});
+	});
+});
+
+</script>
+</body>
+</html>

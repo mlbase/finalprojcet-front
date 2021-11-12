@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="main/base.css">
+<header id="header">
+</header>
+<nav id="nav">
+</nav>
+<main id="main">
+</main>
+<footer id="footer">
+</footer>
+<script type="text/javascript">
+let parsing = location.href.split("?");
+
+
+$(document).ready(function(){
+	/* $("#main").remove(); */
+	drawHtml("main/header.html", "#header");
+	drawHtml("main/navbar.html", "#nav");
+	drawHtml("main/footer.html", "#footer");
+	drawHtml(parsing[1], "#main");
+	/*
+	$.ajax({
+		url:"main/header.html",
+		type:"get",
+		success:function(html){
+			$("#header").text(html);		
+		}
+	});
+	
+	$("#header").load("main/header.html");
+	$("#nav").load("main/navbar.html");
+	$("#footer").load("main/footer.html");
+
+	
+=======
+	$("#main").load("main/main.html");*/
+	/* $("#main").load("profile.html"); */
+
+});
+
+function drawHtml(html_file, tag) {
+	$.ajax({
+		url:html_file,
+		type:"get",
+		success:function(dhtml){
+			$(tag).html(dhtml);		
+		}
+	});
+}
+
+</script>
+</html>

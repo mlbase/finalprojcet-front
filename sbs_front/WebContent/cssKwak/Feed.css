@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.container1{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 20vw 60vw 20vw;
+	height: 100vh;
+	grid-template-areas:'left content right';
+	margin-bottom:1em;					
+						
+}
+.container1 div {
+	background-color: white;
+	padding:20px;
+	border: 1px solid #000;
+}
+
+.left{
+	grid-area:left;
+}
+
+.content{
+	grid-area:content;
+}
+
+.right{
+	grid-area:right;
+}

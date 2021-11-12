@@ -1,0 +1,68 @@
+@charset "UTF-8";
+.container1{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 20vw 60vw 20vw;
+	height: 100vh;
+	grid-template-areas:'left content right';
+	margin-bottom:1em;					
+						
+}
+.container1 div {
+	background-color: white;
+	border: 1px solid #000;
+}
+
+.left{
+	grid-area:left;
+}
+
+.content{
+	grid-area:content;
+}
+
+.right{
+	grid-area:right;
+}
+
+.profile-image {
+    width: 200px;
+    height:200px; 
+    border-radius: 70%;
+    overflow: hidden;
+    margin: auto;
+    margin-top:60px;
+}
+
+.img-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#button-area2{
+	text-align:center;
+	margin-bottom:40px;
+}
+.personal_info {
+	
+}
+#table1{
+	margin:auto;
+}
+
+.button-area {
+	text-align:center;
+	margin-top:40px;
+}
+
+#btn1{
+	
+}
+
+#btn2{
+	
+}
+
+#btn3{
+	
+}
