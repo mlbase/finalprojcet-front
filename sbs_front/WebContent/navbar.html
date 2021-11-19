@@ -1,22 +1,5 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Social Book Store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body> -->
-
-<script type="text/javascript">
-alert('test');
-</script>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-custom">
-  <a class="navbar-brand" href="base.html?main/main.html">Social Book Store</a>
+  <a class="navbar-brand" href="base.html?main.html">Social Book Store</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,7 +7,7 @@ alert('test');
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="base.html?main/main.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="base.html?profile.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="base.html?Feed.html">Feed</a>
@@ -34,16 +17,26 @@ alert('test');
           도서목록
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="base.html?/main/Booklist.html?sort='베스트셀러'">베스트셀러</a>
-          <a class="dropdown-item" href="base.html?main/Booklist.html?sort='New'">신간</a>
+          <a class="dropdown-item" href="base.html?BookListsort.html?bestseller">베스트셀러</a>
+          <a class="dropdown-item" href="base.html?BookListsort.html?New">신간</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="base.html?main/Booklist.html?genre='소설/수필'">소설/수필</a>
-          <a class="dropdown-item" href="base.html?main/Booklist.html?genre='인문학'">인문학</a>
-          <a class="dropdown-item" href="base.html?main/Booklist.html?genre='참고서'">참고서</a>
-          <a class="dropdown-item" href="base.html?main/Booklist.html?genre='자연과학'">자연과학</a>
-          <a class="dropdown-item" href="base.html?main/Booklist.html?genre='전공서적'">전공서적</a>
-          <a class="dropdown-item" href="base.html?main/Booklist.html?genre='경제/경영'">경제/경영</a>
-          <a class="dropdown-item" href="base.html?main/Booklist.html?genre='자기계발'">자기계발</a>
+          <a class="dropdown-item" href="base.html?BookListgenre.html?nobel">소설/수필</a>
+          <a class="dropdown-item" href="base.html?BookListgenre.html?humanity">인문학</a>
+          <a class="dropdown-item" href="base.html?BookListgenre.html?referenceBook">참고서</a>
+          <a class="dropdown-item" href="base.html?BookListgenre.html?naturalScience">자연과학</a>
+          <a class="dropdown-item" href="base.html?BookListgenre.html?majorBook">전공서적</a>
+          <a class="dropdown-item" href="base.html?BookListgenre.html?economyManagement">경제/경영</a>
+          <a class="dropdown-item" href="base.html?BookListgenre.html?selfDevelopment">자기계발</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          구매정보
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        	<a class="dropdown-item" href="base.html?NewFile2.html">장바구니목록</a>
+        <div class="dropdown-divider"></div>
+        	<a class="dropdown-item" href="base.html?orderlist.html?">구매목록</a>
         </div>
       </li>
       <!-- <li class="nav-item">
@@ -55,12 +48,25 @@ alert('test');
       <button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit">Search</button>
     </form>
     <li class="nav-item">
-    	<a class="nav-link" href="login.html">Login</a>
+    	<a class="nav-link" id="login" href="login.html">Login</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="regi.html">Sign up</a>
+        <a class="nav-link" id="signup" href="regi.html">Sign up</a>
     </li>
   </div>
 </nav>
-<!-- </body>
-</html> -->
+<script type="text/javascript">
+let login = JSON.parse(sessionStorage.getItem("login"));
+if(login){
+	$("#login").html('logout');
+	$("#login").attr('href','base.html?main.html');
+	$("#login").attr('onclick','logout()')
+	$("#signup").html('Mypage');
+	$("#signup").attr('href', 'base.html?Mypage.html');
+}
+
+function logout() {
+	sessionStorage.removeItem("login");
+	
+}
+</script>

@@ -1,0 +1,169 @@
+
+
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/base.css">
+
+
+	<div class="container1">
+		<div class="top">
+			<div class="bookTitleWrap">
+				<ul>
+					<li>
+						<a href="" id= "title" class="bookTitle">비겁한 돈</a> <span
+						class="bookSubTitle1">- 결국 용기있는 기회주의자가 부를 얻는다</span></li>
+					<li class="bookSubTitle2">
+						<span id= "writer" ></span>
+						<span id= "publisher"></span>
+						<span id= "publishDate"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="asideLeft"></div>
+		<div class="main">
+			<div class="line1"></div>
+			<div class="space10"></div>
+			<div class="left">
+				<!-- 책 이미지 -->
+				<div class="bookImg">
+					<img id="detail" src="image/book.jpg" alt= "비겁한돈">
+				</div>
+			</div>
+			<div class="right">
+				<!-- 서지정보 -->
+				<div class="bgInfo">
+					<div class="space30"></div>
+					<div class="infoList">
+						<ul>
+							<li>
+								<div class="Litem">정가</div>
+								<div id= "price" class="Ritem">16,000원</div>
+							</li>
+							<li>
+								<div class="LitemP">판매가</div>
+								<div class="RitemP">
+									<span class="fs24">14,400</span>
+									원 (10% 1,600원 할인)
+								</div>
+							</li>
+							
+						</ul>
+					</div>
+					<div class="infoList">
+						<ul>
+							<li>
+								<div class="Litem">ISBN</div>
+								<div id="isbn" class="Ritem">123123</div>
+							</li>
+							<li>
+								<div class="Litem">등록일</div>
+								<div id="regDate" class="Ritem">123123</div>
+							</li>
+							<li>
+								<div class="Litem">출판일</div>
+								<div id="publishDate" class="Ritem">123123</div>
+							</li>	
+						</ul>
+					</div>
+					<div class="infoList">
+						<ul>
+							<li>
+								<div class="Litem">배송료</div>
+								<div id="deliveryFee" class="Ritem">123123</div>
+							</li>
+							<li>
+								<div class="space30"></div>
+							</li>
+						</ul>
+					</div>
+					<div class="infoList">
+						<ul>
+							<li>
+								<div class="Litem" style="padding-bottom: 8px;">수량</div>
+								<div class="Ritem">
+									<div class="inputBox">
+										<input type="number" id="bookCount" name="bookCount">
+										<div class="wishlistBox">
+											<button class="btn btn-primary mt-3" id="wishlist" onclick="gowishlist()" >장바구니담기</button>
+										</div>
+									</div>
+									
+								</div>
+								
+							</li>
+						</ul>
+					</div>
+				<div style="clear: both"></div>
+				</div>
+			</div>
+		</div>
+		<div class="asideRight"></div>
+		<div class="bottom">
+			<div class="line2"></div>
+			<div class="space30"></div>
+			<div class="intBoTitle">책 소개</div>
+			<div id="content" class="intBoTitleCon">ㄴㅇㄻㄴㄹㄴㅇㄻ너ㅏㅇ롬닝러ㅏㅁ농리먼ㅇ롬니앎너ㅏㅣㅇ롬니아럼나ㅣㄻ뇌란ㅇ러ㅣㅁㄴ욂너ㅏ롬나ㅣㅇ뢰ㅏㅓ로미나어롬니어ㅏ롬나ㅣㅇ롬니ㅏㅇ롬ㄴ어ㅏㅣ롬ㄴ아ㅣ론마ㅣㅇ롬나ㅣㅓㅗㄹ머나ㅣ로나ㅣㅇㄹㄴ마ㅣㅇ롬나ㅣ얾나ㅣ롬ㄴ</div>
+			<div class="line2"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<script type="text/javascript">
+	//alert($("#title").html());
+		let ses = JSON.parse(sessionStorage.getItem("login"));
+		let jsonparameter = JSON.parse('null');
+		let parsingseq = location.href.split("?");
+		let paramseq = parsingseq[2];
+		$(document).ready(function() {
+			$.ajax({
+				url : "http://localhost:3000/book",
+				type : "get",
+				data : { 'seq':paramseq },
+				success : function(resp) {
+					//alert(JSON.stringify(resp));
+					jsonparameter = resp;
+
+					$("#title").html(resp.title);
+					$("#writer").html(resp.writer);
+					$("#publisher").html(resp.publisher);
+					$("#price").html(resp.price);
+					$("#isbn").html(resp.isbn);
+					$("#content").html(resp.content);
+					$("#regDate").html(resp.regDate);
+					$("#publishDate").html(resp.publishDate);
+					$("#deliveryFee").html(resp.deliveryFee);
+					$("#detail").attr("src",resp.filename);
+				},
+				error : function() {
+					alert('error');
+				}
+			});
+		});
+		
+		function gowishlist() {
+			if(!ses){
+				alert("로그인해주세요");
+			}
+			$.ajax({
+				url:"http://localhost:3000/wish",
+				type: "post",
+				async:false,
+				data: {'id':ses.id, 'bookSeq':jsonparameter.seq, 
+					'deliveryFee':jsonparameter.deliveryFee, 'bookCount': $("#bookCount").val(),
+					'price':jsonparameter.price},
+				success:function(resp){
+					if(resp == 'OK'){
+						alert('장바구니에 담는데 성공했습니다!');
+					} else{
+						alert('장바구니에 담는데 실패했습니다!');
+					}
+				},
+				error:function(){
+					alert('장바구니에 담는데 실패했습니다!');
+				}
+			})
+		}
+	</script>
+

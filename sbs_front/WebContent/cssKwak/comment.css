@@ -1,0 +1,53 @@
+@charset "UTF-8";
+.container1{
+	
+}
+#nickname{
+	font-size:20px;
+	font-weight:bold;
+}
+#regdate{
+	font-size:15px;
+	color:gray;
+}
+#content{
+	margin-top:8px;
+	margin-bottom:8px;
+}
+#img1{
+	width:20px;
+	height:20px;
+}
+#btn1{
+	background-color:white;
+	border:none;
+	cursor: pointer;
+}
+.comment-box{
+	border-bottom:1px solid;
+	padding:5px;
+}
+.write-comment{
+	padding:5px;
+	
+}
+#name{
+	font-size:20px;
+	font-weight:bold;
+}
+#content-frame{
+	margin-top:8px;
+}
+textarea{
+	width:360px;
+	margin-right:8px;
+	vertical-align:middle;
+}
+#postcomment{
+	background-color:black;
+	color:white;
+	font-size:20px;
+	vertical-align:middle;
+	height:36px;
+	cursor: pointer;
+}

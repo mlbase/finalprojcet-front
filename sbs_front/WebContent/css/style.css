@@ -1,0 +1,222 @@
+@charset "UTF-8";
+
+.container1 {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 15vw 70vw 15vw;
+	/* grid-template-rows: 10vh 75vh 15vh; */
+	grid-template-areas: 'asideLeft top asideRight'
+						 'asideLeft main asideRight'
+						 'asideLeft bottom asideRight';
+	margin-bottom:2em;
+}
+
+.container1 div {
+	background-color: white;
+	padding: 0;
+	/* border: 1px solid #000; */
+}
+
+.top {
+	grid-area: top;
+}
+
+/* 책 제목 */
+.bookTitleWrap {
+	
+	margin: 0;
+	padding: 20px 0 12px 0;
+}
+.bookTitleWrap li {
+	list-style: none;
+	padding-bottom: 12px;
+	text-decoration: none;
+}
+
+a.bookTitle {
+	font-size: 26px;
+	color: #222;
+	line-height: 1.5;
+	letter-spacing: -0.05em;
+	font-weight: 500;
+}
+
+.bookSubTitle1 {
+	font-size: 15px;
+	color: #222;
+	text-decoration: none;
+	line-height: 1.4;
+	letter-spacing: -0.02em;
+}
+
+.bookSubTitle2 {
+	font-size: 14px;
+	color: #444;
+	text-decoration: none;
+}
+
+.asideLeft {
+	grid-area: asideLeft;
+}
+
+/* 메인 */
+.main1 {
+	position: relative;
+	grid-area: main;
+}
+
+.line1 {
+	height: 1px;
+	border-top: 1px solid #ccc;
+}
+/* 도서이미지 */
+.left {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 304px;
+}
+.bookImg img {
+	width:100%;
+	max-width: 300px;
+	border: 1px solid #ccc;
+}
+
+/* 서지정보 */
+.right {
+	margin: 0 0 0 40px;
+	padding: 0px;
+	float: left;
+	width:560px;
+}
+.bgInfo {
+	margin:0;
+	padding: 5px 0 0 0;
+	float: left;
+	width: 560px;
+	text-align: left;
+	font-size: 15px;
+	line-height: 1.5;
+}
+.bgInfo .infoList {
+	clear: both;
+	padding: 0;
+	margin: 0 0 25px 0;
+}
+.infoList ul {
+	padding:0;
+	margin:0;
+}
+.infoList ul li {
+	list-style: none;
+	position: relative;
+	padding: 0 0 3px 0;
+	margin: 0;
+}
+
+.infoList ul li .Litem {
+	position: absolute;
+	left: 0;
+	width: 100px;
+	color: #222;
+}
+.infoList ul li .Ritem {
+	margin-left: 100px;
+	width: 460px;
+	padding-bottom: 3px;
+	color: #222;
+}
+.infoList ul li .LitemP {
+	position: absolute;
+	left: 0;
+	width: 100px;
+	top: 3px;
+	color: #222;
+}
+.infoList ul li .RitemP {
+	margin-left: 100px;
+	width: 460px;
+	padding-bottom: 3px;
+	color: #222;
+	line-height: 1.1;
+}
+.inputBox {
+	float: left;
+	border: 1px solid #cdcdcd;
+	margin: 0 10px 0 0;
+	padding: 0;
+	width: 91px;
+}
+
+.formInput {
+	border: 0;
+	padding: 11px 5px 11px 5px;
+	font-family: malgun, "Malgun Gothic", Dotum, 돋움, sans-serif;
+	font-size: 16px;
+	margin: 0;
+	color: #222;
+	width: 56px;
+	float: left;
+		
+}
+
+.asideRight {
+	grid-area: asideRight;
+}
+.line2 {
+	margin: 45px 0 40px 0;
+	padding: 0;
+	border-top: 1px solid #d5d5d5;
+}
+
+.bottom {
+	grid-area: bottom;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	text-align: left;
+}
+/* 책 소개 */
+.intBoTitle {
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	font-family: malgun, "Malgun Gothic", Dotum, 돋움, sans-serif;
+    color: #222;
+    font-size: 21px;
+    line-height: 1.5;
+    text-align: left;
+    letter-spacing: -0.02em;
+}
+.intBoTitleCon {
+	float: left;
+	margin: 50px 0 0 0;
+	padding: 0;
+	font-family: malgun, "Malgun Gothic", Dotum, 돋움, sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #333;
+}
+/* 빈공간 */
+.space10 {
+	margin: 0;
+	padding: 0;
+	height: 10px;
+}
+.space30 {
+	margin: 0;
+	padding: 0;
+	height: 30px;
+}
+.fs24 {
+	font-size: 24px;
+}
+.clear {
+	clear: both;
+	margin: 0 px;
+	padding: 0 px;
+}
