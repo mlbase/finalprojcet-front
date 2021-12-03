@@ -34,7 +34,9 @@
 </table>	
 </form>
 <script type="text/javascript">
+let ses = JSON.parse(sessionStorage.getItem("login"));
 $(document).ready(function(){
+	$("#nickname").val(ses.nickname);
 	$("#postfeed").on("click", function(){
 		let params = $("#frm").serialize();
 		

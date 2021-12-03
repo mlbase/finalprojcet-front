@@ -1,0 +1,108 @@
+
+<link rel="stylesheet" href="../cssKwak/feedWrite.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<meta charset="UTF-8">
+<div class="container1 py-1">
+	<form id="frm" enctype="multipart/form-data">
+		<table id="tableFrame" class="table table-bordered">
+			<tr>
+				<td id="name">
+				nickname
+				</td>
+				
+			</tr>
+			<tr id="tr2">
+				<td><input type="file" id="uploadFile" name="uploadFile" accept="image/*" onchange="javascript:setThumbnail(event);">
+				<button type="button" id="upload" class="btn btn-success btn-sm">이미지파일업로드</button>
+				1MB미만
+				</td>
+			</tr>
+			<tr id="tr3">
+				<td id="td3"><div id="imgContainer"></div></td>
+			</tr>
+			<tr id="tr4">
+				<td><textarea class="ml-4" id="content" name="content"></textarea></td>
+			</tr>
+			<tr id="tr5">
+				<td><textarea class="ml-4" id="tag" name="tag"></textarea></td>
+			</tr>
+			<tr id="tr6">
+				<td id="td6"><button  class="btn btn-primary postFeed" type="button">작성</button></td>
+			</tr>			
+		</table>
+		<input type="hidden" id="filename" name="filename">
+	</form>
+</div>
+
+<script type="text/javascript">
+let ses = JSON.parse(sessionStorage.getItem("login"));
+$("#name").html(ses.nickname);
+//let getFilename = document.getElementById('image').files[0].name;
+//document.getElementById('image').files[0].name;
+//$("#image").files[0].name;
+function setThumbnail(event) {
+	
+	var reader = new FileReader(); 
+	
+	reader.onload = function(event) {
+		var img = document.createElement("img"); 
+		img.setAttribute("src", event.target.result); 
+		document.querySelector("div#imgContainer").appendChild(img); 
+		}; 
+		
+		reader.readAsDataURL(event.target.files[0]); 
+		
+	}
+
+
+$(document).ready(function(){
+	$("#upload").on("click", function(){
+		
+		
+		
+		$.ajax({
+			url:"http://localhost:3000/fileupload",
+			type: "post",
+			async: false,
+			data: new FormData( $("#frm")[0] ),
+			enctype: 'multipart/form-data',
+			processData:false,
+			contentType:false,
+			cash:false,
+			success:function(resp){
+				alert(resp);
+				$("#filename").val(resp);
+			},
+			error:function(){
+				alert('error');
+				//location.href="base.html?feedWrite.html";
+			}
+		});
+
+		
+
+	});
+
+});
+
+$(".postFeed").on("click", function(){
+
+	$.ajax({
+		url:"http://localhost:3000/feed",
+		type: "post",
+		data: {"nickname":$("#name").html(), "content":$("#content").val(), 
+			"tag":$("#tag").val(), "filename":$("#filename").val()},
+		success : function(msg) {
+				alert(msg);
+				alert('성공적으로 포스팅 하셨습니다.');
+				window.close();
+			},
+		error : function() {
+				alert('error');
+		}
+	});
+});
+
+</script>

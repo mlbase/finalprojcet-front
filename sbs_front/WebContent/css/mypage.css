@@ -1,0 +1,45 @@
+@charset "UTF-8";
+.container1{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 20vw 30vw 30vw 20vw; 	
+	grid-template-areas: 'left lef1 right1 right';
+  	text-align: center;	
+}
+
+.left1 {
+   	position: left;
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 300px;	
+}
+	
+.right1 {
+   	position: center;
+	margin: 0;
+	padding: 0;
+	float: center;
+	width: 200px;
+	font-size: medium;
+	
+}	
+
+.container2{
+	text-align: center;
+}
+
+.container3{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 20vw 60vw 20vw; 	
+	grid-template-areas: 'leftdown centerdown rightdown';
+  	text-align: center;	
+}
+.form-control{
+	text-align-last: center;	
+}
+
+.modal fade{
+	text-align: center;
+}

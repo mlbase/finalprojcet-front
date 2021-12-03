@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>프로필 사진 수정하기</title>
+<link rel="stylesheet" href="cssKwak/updateProfileImg.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="container1">
+	<form id="frm" enctype="multipart/form-data">
+		<table id=tableFrame>
+			
+			<tr>
+				<td id="name">
+				nickname
+				</td>				
+			</tr>
+			
+			<tr id="tr2">
+				<td>
+				<input type="file" id="uploadFile" name="uploadFile" accept="image/*" onchange="javascript:setThumbnail(event);">
+				1MB미만
+				</td>
+			</tr>	
+			
+			<tr id="tr3">
+				<td id="td3"><div id="imgContainer"></div></td>
+			</tr>
+			
+			<tr id="tr6">
+				<td id="td6"><button type="button" id="postFeed">작성</button></td>
+			</tr>	
+					
+		</table>
+	</form>
+</div>
+
+<script type="text/javascript">
+let ses = JSON.parse(sessionStorage.getItem("login"));
+$("#name").html(ses.nickname);
+
+function setThumbnail(event) {
+	
+	var reader = new FileReader(); 
+	
+	reader.onload = function(event) {
+		var img = document.createElement("img"); 
+		img.setAttribute("src", event.target.result); 
+		document.querySelector("div#imgContainer").appendChild(img); 
+		}; 
+		
+		reader.readAsDataURL(event.target.files[0]); 
+		
+	}
+	
+$(document).ready(function(){
+	
+
+	$("#postFeed").on("click", function(){
+		let frm = $("#frm")[0];
+		let form = new FormData(frm);
+		form.append('uploadfile',$('#uploadfile'));
+		form.append('nickname', $('#name').html());
+		
+		$.ajax({
+			url:"http://localhost:3000/profileload",
+			type: "post",
+			data: form,
+			enctype: 'multipart/form-data',
+			processData:false,
+			contentType:false,
+			cash:false,
+			success : function(msg) {
+					alert(msg);
+					alert('프로필을 수정하셨습니다.');
+					window.close();
+				},
+			error : function() {
+					alert('error');
+			}
+		});
+	});
+
+});
+</script>
+</body>
+</html>

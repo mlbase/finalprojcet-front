@@ -1,0 +1,104 @@
+
+<!-- <link rel="stylesheet" href="../cssKwak/feedWrite.css"> -->
+
+
+
+
+<div class="container1">
+	<form id="frm" enctype="multipart/form-data">
+		<table id=tableFrame>
+			<tr>
+				<td id="name">
+				nickname
+				</td>
+				
+			</tr>
+			<tr id="tr2">
+				<td><input type="file" id="uploadFile" name="uploadFile" accept="image/*" onchange="javascript:setThumbnail(event);">
+				<button type="button" id="upload">이미지파일업로드</button></td>
+			</tr>
+			<tr id="tr3">
+				<td id="td3"><div id="imgContainer"></div></td>
+			</tr>
+			<tr id="tr4">
+				<td><textarea id="content" name="content"></textarea></td>
+			</tr>
+			<tr id="tr5">
+				<td><textarea id="tag" name="tag"></textarea></td>
+			</tr>
+			<tr id="tr6">
+				<td id="td6"><button type="button" id="postFeed">작성</button></td>
+			</tr>			
+		</table>
+		<input type="hidden" id="filename" name="filename">
+	</form>
+</div>
+
+<script type="text/javascript">
+let ses = JSON.parse(sessionStorage.getItem("login"));
+$("#name").html(ses.nickname);
+//let getFilename = document.getElementById('image').files[0].name;
+//document.getElementById('image').files[0].name;
+//$("#image").files[0].name;
+function setThumbnail(event) {
+	
+	var reader = new FileReader(); 
+	
+	reader.onload = function(event) {
+		var img = document.createElement("img"); 
+		img.setAttribute("src", event.target.result); 
+		document.querySelector("div#imgContainer").appendChild(img); 
+		}; 
+		
+		reader.readAsDataURL(event.target.files[0]); 
+		
+	}
+
+
+$(document).ready(function(){
+	$("#upload").on("click", function(){
+		
+		
+		
+		$.ajax({
+			url:"http://localhost:3000/fileupload",
+			type: "post",
+			async: false,
+			data: new FormData( $("#frm")[0] ),
+			enctype: 'multipart/form-data',
+			processData:false,
+			contentType:false,
+			cash:false,
+			success:function(resp){
+				alert(resp);
+				$("#filename").val(resp);
+			},
+			error:function(){
+				alert('error');
+				//location.href="base.html?feedWrite.html";
+			}
+		});
+
+		
+
+	});
+
+});
+
+$("#postFeed").on("click", function(){
+
+	$.ajax({
+		url:"http://localhost:3000/feed",
+		type: "post",
+		data: {"nickname":$("#name").html(), "content":$("#content").val(), 
+			"tag":$("#tag").val(), "filename":$("#filename").val()},
+		success : function(msg) {
+				alert(msg);
+			},
+		error : function() {
+				alert('error');
+		}
+	});
+});
+
+</script>

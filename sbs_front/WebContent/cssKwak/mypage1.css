@@ -1,0 +1,96 @@
+@charset "UTF-8";
+.container1{
+	display: grid;
+	grid-template-columns: 20vw 30vw 30vw 20vw;
+	grid-template-rows:   400px 120px 160px 220px;
+	height: 900px;
+	grid-template-areas:'left pic info right'
+						'left upe upe right'
+						'left upa upa right'
+						'left upp upp right';
+	
+}
+
+.container1 div {
+	background-color: white;
+	  /*  border: solid 1px black; */
+	/* border: none; */
+}
+.left{
+	grid-area:left;
+}
+.pic{
+	grid-area:pic;
+}
+.profile-image {
+    width: 200px;
+    height:200px; 
+    border-radius: 70%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 7vh;
+    border: solid 2px black !important;
+    
+}
+.upProFrame{
+	text-align:center;
+}
+.messageFrame{
+	text-align:center;
+}
+.img-thumbnail1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#title1{
+	font-size:20px;
+	font-weight:bold;
+}
+#imgPopBtn{
+	background-color:white;
+	border:none;
+	cursor:pointer;
+}
+#cameraIcon{
+	width:28px;
+	height:22px;
+}
+#checkDM{
+	background-color:white;
+	border:none;
+	cursor:pointer;
+}
+#chatIcon{
+	width:28px;
+	height:21px;
+}
+.info{
+	grid-area:info;
+}
+.infotd{
+	text-align:center;
+	
+}
+.table1{
+	height:40vh;
+	width:30vw;
+}
+.table2{
+	padding:0px !important;
+}
+.upe{
+	grid-area:upe;
+}
+#updateemail{
+	text-align:center !important;
+}
+.upa{
+	grid-area:upa;
+}
+.upp{
+	grid-area:upp;
+}
+.right{
+	grid-area:right;
+}

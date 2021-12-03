@@ -1,60 +1,128 @@
 <!DOCTYPE html>
 <html>
-<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <head>
 <meta charset="UTF-8">
-<title>MyPage</title>
-<link rel="stylesheet" href="cssKwak/myPage.css">
+<title>My page1</title>
+<link rel="stylesheet" href="cssKwak/mypage1.css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 </head>
 <body>
 <div class="container1">
-	<div class="left">left</div>
-	<div class="content">content<br>
+	<div class="left"></div>
+	<div class="pic">
 		<div class="profile-image">
-			<img src="abc.jpg" onerror="this.src='images/profile.jpg'" class="img-thumbnail">		
+			<img src="?" id="img-thumbnail1" class="img-thumbnail1" onerror=this.src="images/profile.jpg" >		
 		</div>
-		<div id=button-area2><button id=btn1 type="button">사진수정</button></div>	
-		<div class="personal_info">
-			<table id="table1" border="1">
-				<tr>
-				<th>아이디</th>
-				<td><input type="text" name="id" placeholder="가져온 아이디(고정)" readonly></td>
-				</tr>
-				<tr>
-				<th>닉네임</th>
-				<td><input type="text" name="nickname" placeholder="가져온 닉네임"></td>
-				</tr>
-				<tr>
-				<th>이름</th>
-				<td><input type="text" name="name" placeholder="가져온 이름(고정)" readonly></td>				
-				</tr>
-				<tr>
-				<th>생년월일</th>
-				<td><input type="text" name="birth" placeholder="가져온 생년월일(고정)" readonly></td>				
-				</tr>
-				<tr>
-				<th>이메일</th>
-				<td><input type="text" name="email" placeholder="가져온 이메일"></td>				
-				</tr>
-				<tr>
-				<th>주소</th>
-				<td><input type="text" name="address" placeholder="가져온 주소"></td>
-				</tr>
-				<tr>
-				<th>Intro</th>
-				<td><input type="text" name="introduce" placeholder="가져온 소개"></td>
-				</tr>			
-			</table>
+		<div class="upProFrame">
+			<button id="imgPopBtn" type="button" onclick="update_profile_pop()"><img id='cameraIcon' src='images/camera.png'></button>
 		</div>
-		<div class="button-area">
-		<button id=btn2 type="button">수정</button>
-		<button id=btn3 type="button">비밀번호 변경</button>		
+		<div class="messageFrame">
+			<span id=title1>DM확인하기</span><br>
+			<button id="checkDM" onclick="checkDMpop()" ><img id='chatIcon' src='images/chatIcon.png'></button>
 		</div>
 	</div>
-	<div class="right">right</div>
-</div>
+	<div class="info">
+		   <table class="table1">
+		    <tr>
+		      <td>ID</td>
+		      <td><div id="profile-id">sample id</div></td>
+		    </tr>
+		    <tr>
+		      <td>E-mail</td>
+		      <td><div id="profile-email">sample@email.com</div></td>
+		    </tr>
+		    <tr>
+		      <td>Nickname</td>
+		      <td><div id="profile-nickname">sample nickname</div></td>
+		    </tr>
+		    <tr>
+			   <td>Address</td>
+			   <td><div id="profile-address">sample address</div></td>
+		    </tr>
+		  </table>	
+	</div>
+	<div class="upe">
+			
+			<table class="table table-hover">
+				<tr>
+					<th>이메일 주소<span class="necessary"></span></th>
+					<td>
+						<div class="hp_area">
+							<div class="input_wrap col-w-9">
+								<form id="emailData">
+									<input type="text" title="이메일 주소" id=emailId class="full"
+										placeholder="abc123"
+										style="width: 150px; height: 30px; font-size: 20px;">
+									<span class="connection">@</span> <input type="text"
+										id="writeemail" title="이메일주소 직접입력" class="full"
+										placeholder="직접입력"
+										style="width: 320px; height: 30px; font-size: 20px;">
+									<div id=upeFrame></div>
+									<button type="button" id="updateemail"
+										class="usermodify-password-submit btn btn-success btn-sm mt-2">변경</button>
+								</form>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+	<div class="upa">
+		  <div class="addFrame">
+			  <table class="table table-hover">
+				  <tr>
+				    <th>주소 변경</th>
+				      	<td id="add">
+							<input type="text" id="sample4_postcode" placeholder="우편번호" style= "width:200px; height:30px; font-size:20px;">
+							<input class="btn btn-success btn-sm mb-2" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+							<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+							<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+							<span id="guide" style="color:#999;display:none"></span><br>
+							<input type="text" id="sample4_detailAddress" placeholder="상세주소">
+							<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+							<input class="btn btn-success btn-sm" type="button" id="updateaddress" onclick="updatetest()" value="주소 변경">
+						</td>
+				  </tr>
+			  </table>
+		  </div>
+	</div>
+		<div class="upp">
+			<table class="table table-hover">
+				<tr>
+					<th>현재 비밀번호</th>
+					<td><input type="password" name="pwd" class="text-field"
+						id="pwd" style="width: 300px; height: 30px; font-size: 20px;"
+						placeholder="비밀번호"></td>
+				</tr>
+
+				<tr>
+					<th>새 비밀번호</th>
+					<td><input type="password" name="pwdchange" class="text-field"
+						id="newpwd" style="width: 300px; height: 30px; font-size: 20px;"
+						placeholder="새 비밀번호"></td>
+				</tr>
+
+				<tr>
+					<th>비밀번호 확인</th>
+					<td><input type="password" name="pwdcheck" class="text-field"
+						id="pwcheck" style="width: 300px; height: 30px; font-size: 20px;"
+						placeholder="비밀번호 확인"> <span id="pwdcheck"
+						style="font-size: 8px; margin: 10px; margin-top: 0px; padding: 5px"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<button class="btn btn-success btn-sm" type="button" onclick="check()" class="check-btn">확인</button>
+					</th>
+					<td>
+						<button class="btn btn-danger btn-sm d-none" type="button" id="changepwd" >비밀번호 변경</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+<script type="text/javascript" src="javascript/mypage1.js"></script>
 </body>
 </html>

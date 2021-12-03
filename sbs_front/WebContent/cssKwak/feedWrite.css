@@ -1,0 +1,52 @@
+@charset "UTF-8";
+table{
+	width:600px;
+	border:1px solid black;
+	margin:auto;
+}
+td{
+	border:1px solid black;
+}
+#content{
+	width:600px;
+	height:100px;
+}
+#tag{
+	width:600px;
+	height:50px;
+}
+#td1{
+	font-size:20px;
+	font-weight:bold;
+}
+#tr3{
+	height:500px;
+}
+#td3{
+	text-align:center;
+}
+#tr4{
+	height:100px;
+	padding:0px;
+}
+#tr5{
+	height:50px;
+}
+#tr6{
+
+}
+#td6{
+	text-align:center;
+}
+#postFeed{
+	background-color:black;
+	color:white;
+	font-size:20px;
+	height:36px;
+	cursor: pointer;
+}
+
+img{
+	width:550px;
+	height:400px;
+}

@@ -7,48 +7,77 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>Profile</title>
+<title>내가 쓴 게시물 확인하기</title>
 <link rel="stylesheet" href="cssKwak/profile.css">
 </head>
 <body>
 <div class="container1">
-	<div class="left">left</div>
+	<div class="left"></div>
 	<div class="picture">
 		<div class="profile-image">
-			<img src="images/Ff8-zell.jpg" class="img-thumbnail1">		
+			<img src="?" id="img-thumbnail1" class="img-thumbnail1" onerror=this.src="images/profile.jpg" >		
 		</div>	
-	
+	<div id=updateProfile>
+	<button id="imgPopBtn" type="button" onclick="update_profile_pop()"><img id='cameraIcon' src='images/camera.png'></button>
+	</div>
 	<div id="profile-nickname"></div>
 	<div id="profile-birth">00/00</div>
 	<div id="profile-email">abc123@naver.com</div>
-	<div class="button"><button id=btn2 type="button">메세지</button></div>
+	<div class="button-frame">
+	<button id="messagePopBtn" type="button" onclick="message_pop()"><img id='chatIcon' src='images/chatIcon.png'></button>
+	</div>
 	</div>
 	
 	<div class="info">
-		<p style="font-weight:bold; font-size:25px;">Intro&nbsp;<button id=btn3 type="button">ㅇ</button></p>
-		<div id="intro">
+		<div class="title2">
+		Intro&nbsp;
+			<button id="updateIntro" type="button">
+				<img id='update1' src='images/update.png'>
+			</button>			
 		</div>
-		<p style="font-weight:bold; font-size:25px;">Favorite Books&nbsp;<button id=btn4 type="button">ㅇ</button></p>
-		<div id="FavBooks">
+		
+		<div id="intro">	
+		</div>
+		
+		<div id="updateForm">
+		<form id="introData">
+		<input type="hidden" id="nickname" name="nickname">
+		<textarea name="introduce"></textarea>
+		<button id="postIntro" type="button">수정</button>
+		</form>
+		</div>
+		
+<!-- 		<div class="title2">
+		Interest Tags&nbsp;
+		<button id="updateInterest" type="button"><img id='update1' src='images/update.png'></button>
+		</div>
+		<div id="interestTags">
 		'어린왕자' '연금술사' '이것이 오라클이다'
-		</div>	
+		</div> -->	
 	</div>
-	<div class="content">content<br>
-		 <ul class="infinite-list"><h3 style="margin-bottom:10px">작성자 게시물 확인하기</h3></ul>
+	<div class="content"><br>
+		 <ul class="infinite-list">
+		 <span id="title1">내 게시물 확인하기</span>
+		 <button id="feedWriteBtn" onclick="feed_write_pop()" type="button"><img id='FeedWriteIcon' src='images/FeedWriteIcon.png'></button>
+		 </ul>
 		
 	</div>
 	
 	
 	
-	<div class="right">right</div>
+	<div class="right"></div>
 </div>
 <script type="text/javascript">
-let parsing = location.href.split("?");
-let ses = JSON.parse(sessionStorage.getItem("login"));
+/* let sess = JSON.parse(sessionStorage.getItem("login"));
+$("#img-thumbnail1").attr("src","images/"+sess.filename); */
+
+/* $("#img-thumbnail1").attr("src","images/Ff8-zell.jpg"); */
+/* let parsing1 = location.href.split("?"); */
+/* let ses = JSON.parse(sessionStorage.getItem("login"));
 $("#profile-nickname").html(ses.nickname);
 $("#profile-birth").html(ses.birth);
 $("#profile-email").html(ses.email);
-$("#intro").html(ses.introduce);
+$("#intro1").html(ses.introduce);
 
 //alert(JSON.stringify(ses));
 function getLike(seq){
@@ -92,7 +121,7 @@ function getNextFeed(){
 		return;
 	}
 	var params = {"currentPage" : currentPage,
-				  "nickname" 		  : parsing[1],
+				  "nickname" 		  : ses.nickname,
 				  "rowsPerPage" : rowsPerPage
 				 };
 	
@@ -111,18 +140,18 @@ function getNextFeed(){
 				html.push("<div class='feed-frame'>");				
 				html.push("<a id='nick' href='profile.html?"+item.nickname + "'>" + item.nickname+ "</a>&nbsp;&nbsp;");
 				html.push("<span id='regi'>"+ item.regDate+"</span><br>");
-				html.push("<div id=feed-img-frame><img id=feed-img src='images/"+item.filename+"' onerror='this.src=`images/error.png`;'/></div><br>");
-				html.push("내용 : " + item.content+"<br>");
-				html.push("좋아요 : " +likecount+"&nbsp;");
-				html.push("<button onclick='likebtn(`"+nickname+"`,`"+item.seq+ "`)'>좋아요</button><br>");
-				html.push("태그 : " + item.tag);
-				html.push("<input  onclick='comment_pop("+String(item.seq) + ")' type=button value='댓글보기'>")
+				html.push("<div id=feed-img-frame><img id=feed-img src='images/"+item.filename+"' onerror='this.src=`images/error.png`;'/></div>");
+				html.push("<button id='btn1' onclick='likebtn(`"+nickname+"`,`"+item.seq+ "`)'><img id='img1' src='images/heart.png'></button>");
+				html.push("<span id=likecount1>"+likecount+"</span>&nbsp;&nbsp;&nbsp;");
+				html.push("<button id='commentPopBtn' onclick='comment_pop("+String(item.seq) + ")'><img id='commenticon' src='images/commentIcon.png'></button><br>")
+				html.push("<div id='feedcontent'>" + item.content+"</div><br>");	
+				html.push("태그 : " + item.tag+"<br>");
 				html.push("</div>");
 			});
 			
 			$('.infinite-list').append(html.join(''));
 			currentPage++;
-			alert(JSON.stringify(list));
+//			alert(JSON.stringify(list));
 // 			document.getElementById('json').innerHTML=JSON.stringify(list);
 			
 		},
@@ -130,36 +159,17 @@ function getNextFeed(){
 			alert('error');
 		}
 	});
-}
+} */
 
 
-function comment_pop(seq) {
-	window.open("comment.html?"+seq , '댓글보기', 'top=10, left=10, width=500, height=600, status=no, menubar=no')
-};
 
-function likebtn(nickname, feedSeq) {
-	$.ajax({
-		url:"http://localhost:3000/like",
-		type:"post",
-		data : {"nickname":nickname, "feedSeq":feedSeq, "isLike": 1},
-		success: function(resp){
-			//alert(resp);
-			if(resp == 'OK'){
-				alert("좋아요를 누르셨습니다.");
-			}
-			if(resp == 'already'){
-				alert("이미 좋아요를 누르셨습니다.");
-			}
-			
-		},
-		error: function(){
-			alert(error);
-		}
 
-	})
-};
+
 	
 
 </script>
 </body>
+<script type="text/javascript" src="javascript/profile.js">
+
+</script>
 </html>

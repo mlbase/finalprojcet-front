@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="cssKwak/checkDM.css">
+<title>My DM</title>
+</head>
+<body>
+
+<div class="container1">
+	
+	<div class="targetgrid">
+		<div id="target">
+			
+		</div>
+	</div>
+	
+	<div class="writegrid">	
+		<div id="messageWrite">
+			<div id=idFrame>
+				<span id=receiveId></span><span id=notice>메세지를 보내실 아이디를 선택해 주세요.</span>
+				<input type=hidden id=RIDval value="">
+			</div>
+			<div id=idFrame>
+				<textarea id=comment name=content></textarea>
+			</div>
+			<div id=buttonFrame>
+				<button type="button" id="send" class="dm1 btn btn-primary btn-sm">보내기</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="recgird">
+		<div id="title1"></div>
+		
+		<div id="message">
+		</div>
+	</div>
+	
+	<div class="sentgird">
+		<div id="title2"></div>
+		<div id="mymessage">
+		</div>
+	</div>
+
+	
+</div>
+</body>
+<script type="text/javascript" src="javascript/checkDM.js">
+</script>
+</html>

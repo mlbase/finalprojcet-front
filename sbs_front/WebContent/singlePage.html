@@ -3,18 +3,16 @@
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/base.css">
-
 
 	<div class="container1">
 		<div class="top">
 			<div class="bookTitleWrap">
 				<ul>
 					<li>
-						<a href="" id= "title" class="bookTitle">비겁한 돈</a> <span
-						class="bookSubTitle1">- 결국 용기있는 기회주의자가 부를 얻는다</span></li>
+						<a href="" id= "title" class="bookTitle"></a> 
+					</li>
 					<li class="bookSubTitle2">
-						<span id= "writer" ></span>
+						<span id= "writer"></span>
 						<span id= "publisher"></span>
 						<span id= "publishDate"></span>
 					</li>
@@ -28,7 +26,7 @@
 			<div class="left">
 				<!-- 책 이미지 -->
 				<div class="bookImg">
-					<img id="detail" src="image/book.jpg" alt= "비겁한돈">
+					<img id="detail" alt= "책 이미지">
 				</div>
 			</div>
 			<div class="right">
@@ -39,13 +37,13 @@
 						<ul>
 							<li>
 								<div class="Litem">정가</div>
-								<div id= "price" class="Ritem">16,000원</div>
+								<span id= "price" class="Ritem"></span><span>원</span>
 							</li>
 							<li>
 								<div class="LitemP">판매가</div>
 								<div class="RitemP">
-									<span class="fs24">14,400</span>
-									원 (10% 1,600원 할인)
+									<span id="price2" class="fs24"></span>
+									원 (<span id ="sale">10</span>% <span id ="subtrac"></span>원 할인)
 								</div>
 							</li>
 							
@@ -55,15 +53,15 @@
 						<ul>
 							<li>
 								<div class="Litem">ISBN</div>
-								<div id="isbn" class="Ritem">123123</div>
+								<div id="isbn" class="Ritem"></div>
 							</li>
 							<li>
 								<div class="Litem">등록일</div>
-								<div id="regDate" class="Ritem">123123</div>
+								<div id="regDate" class="Ritem"></div>
 							</li>
 							<li>
 								<div class="Litem">출판일</div>
-								<div id="publishDate" class="Ritem">123123</div>
+								<div id="publishDate1" class="Ritem"></div>
 							</li>	
 						</ul>
 					</div>
@@ -71,7 +69,7 @@
 						<ul>
 							<li>
 								<div class="Litem">배송료</div>
-								<div id="deliveryFee" class="Ritem">123123</div>
+								<span id="deliveryFee" class="Ritem"></span><span>원</span>
 							</li>
 							<li>
 								<div class="space30"></div>
@@ -104,7 +102,7 @@
 			<div class="line2"></div>
 			<div class="space30"></div>
 			<div class="intBoTitle">책 소개</div>
-			<div id="content" class="intBoTitleCon">ㄴㅇㄻㄴㄹㄴㅇㄻ너ㅏㅇ롬닝러ㅏㅁ농리먼ㅇ롬니앎너ㅏㅣㅇ롬니아럼나ㅣㄻ뇌란ㅇ러ㅣㅁㄴ욂너ㅏ롬나ㅣㅇ뢰ㅏㅓ로미나어롬니어ㅏ롬나ㅣㅇ롬니ㅏㅇ롬ㄴ어ㅏㅣ롬ㄴ아ㅣ론마ㅣㅇ롬나ㅣㅓㅗㄹ머나ㅣ로나ㅣㅇㄹㄴ마ㅣㅇ롬나ㅣ얾나ㅣ롬ㄴ</div>
+			<div id="content" class="intBoTitleCon"></div>
 			<div class="line2"></div>
 		</div>
 		<div class="clear"></div>
@@ -124,7 +122,7 @@
 				success : function(resp) {
 					//alert(JSON.stringify(resp));
 					jsonparameter = resp;
-
+					let rate = $("#sale").html();
 					$("#title").html(resp.title);
 					$("#writer").html(resp.writer);
 					$("#publisher").html(resp.publisher);
@@ -133,8 +131,11 @@
 					$("#content").html(resp.content);
 					$("#regDate").html(resp.regDate);
 					$("#publishDate").html(resp.publishDate);
+					$("#publishDate1").html(resp.publishDate);
 					$("#deliveryFee").html(resp.deliveryFee);
 					$("#detail").attr("src",resp.filename);
+					$("#price2").html(resp.price/100*(100-rate));
+					$("#subtrac").html(resp.price/100*(rate));
 				},
 				error : function() {
 					alert('error');

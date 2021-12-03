@@ -1,7 +1,0 @@
-@charset "EUC-KR";
-
-
-.bg-custom {
-	background: rgb(2,0,36);
-background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(25,234,235,1) 35%, rgba(0,212,255,1) 100%);
-}

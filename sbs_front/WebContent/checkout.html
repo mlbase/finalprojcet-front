@@ -1,0 +1,167 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+	 <style type="text/css">
+	    /* 
+	        .pickup_list { padding: 0px 0px 5px 0px; }
+	        .pickup_list ul {margin:0; padding:0 10px;}
+	        .pickup_list ul li {list-style:none; margin:0; padding:5px 0;}
+	
+	        .pickup_tt{color:#2b7bc5; font-weight:bold;}
+	
+	        a.pickup:link {color:#333333; text-decoration: none}
+	        a.pickup:visited {color:#333333; text-decoration: none}
+	        a.pickup:hover {color:#333333; text-decoration: underline} */
+	    .title{
+	    	margin-top:10%;
+	    	display:center;
+	    	text-align: center;
+	    	left:20%;
+	    }
+	    </style> 
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript" src="./js/checkout.js"></script>
+	
+	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	
+
+	</head>
+	<body>
+
+
+
+
+
+
+	<div class="container" >
+
+		
+		<div class="DefaultAddr">
+			<table class="table ml-5" cellspacing="1" cellpadding="3" width="80%" bgcolor="#ffffff" border="0" align="center">
+				<span><배송정보입력></span>
+				<tbody>
+					<tr>
+						<td align="left" width="23%" style="bgcolor:white"><span class="warning">* </span>아이디
+						</td>
+						<td >
+						<input type="text" name="OrdererName" id="id"
+							class="form" value="" maxlength="20">
+						</td>
+						<td><span id=name></span></td>
+					</tr>
+					<tr>
+						<td class="popup" align="left" width="23%" 
+							style="padding-left: 14px;">
+							<strong>배송지 선택</strong>
+						</td>
+						<td bgcolor="white">
+								<input type="radio" name="addre"  value="1" class="prAddress" >
+								<label for="AdressInit1">기존 주소</label> 
+								<input type="radio" name="addre"  value="2" >
+								<label for="AdressInit2">새주소 입력</label></td>
+								
+					</tr>
+					
+					<tr>
+						<td>주소</td>
+						<td id="add" width="35%"><input type="text" id="sample4_postcode"
+							placeholder="우편번호"> 
+							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+							<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+							<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+							<span id="guide" style="color: #999; display: none"></span>
+							<input type="text" id="sample4_detailAddress" placeholder="상세주소">
+							<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+							<input type="button" onclick="addressmake()" value="주소만들기">
+						</td>
+					</tr>
+
+
+					
+					<tr style="bgcolor:#ffffff">
+						<td  align="left" width="23%" style="padding-left: 14px;">카드번호</td>
+						<td bgcolor="#ffffff"><input class="form" type="text" maxlength="40" size="30" name="cardNUM" value="" id="cardNum">  
+						<font face="굴림"></font></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="container">
+		
+			<table cellspacing="1" cellpadding="3" width="670" bgcolor="#83b8c2"
+				border="0"  style="margin-top: 20px;">
+				<tbody>
+
+					<tr>
+						
+						<td bgcolor="#ffffff">
+							<input type="hidden" id="IsKeepDeliveryMsg" name="IsKeepDeliveryMsg"> 
+							<input type="hidden" id="DeliveryMsg" name="DeliveryMsg" value="">
+							<input type="hidden" id="Bigo" name="Bigo" value=""> 
+							<input type="hidden" id="prevBigo" name="prevBigo" value="">
+						    <input type="hidden" id="prevDeliveryMsg" name="prevDeliveryMsg" value=""> 
+						    <input type="hidden" id="prevDeliveryMsgText" name="prevDeliveryMsgText" value=""> 
+						    <input type="hidden" id="prevKeep" name="prevKeep" value="false">
+
+						</td>
+					</tr>
+
+
+
+				</tbody>
+			</table>
+					
+			<table width="714" border="1" cellspacing="0" cellpadding="0" style="margin-bottom: 8px;">
+				<tbody>
+					<span ><주문 상품 정보></span>
+				</tbody>
+			</table>
+			
+			
+<div class="container" >
+	<table width="500px" cellpadding="0" cellspacing="1" bgcolor="white" class="p-10 m-10 table table-hover">
+			
+		<thead>
+					<tr>
+						
+						<th width="2%" height="15" align="center">이미지</th>
+						<th width="2%" height="15" align="center">상품명</th>
+						<th width="2%" height="15" align="center">가격</th>
+						<th width="5%" height="15" align="center">수량</th>
+						<th width="5%" height="15" align="center">총 상품가격</th>
+						
+					</tr>
+				</thead>
+		<tbody id='row'></tbody>	
+	</table>	
+		<div class="bigtext box blue summoney" style=" display:inline-block; margin:10px 5px; float:center;">합계금액: 
+		<input type="text" id="sum_p_price" name="sum_p_price" ><span>원</span>&nbsp;&nbsp;
+		</div>	
+         <div style=" display:inline-block; margin:0 5px; float:center;"> 
+         <button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8090/sbs_front/base.html?NewFile2.html' ">장바구니로 돌아가기</button>&nbsp;&nbsp;
+		 <button type="button" onclick="Doorder()" class="btn btn-primary">결제하기</button></div>
+		 
+</div>
+	
+				
+					
+			
+
+			
+
+		</div>
+		
+	</div>
+	
+	
+	
+</body>
+</html>

@@ -1,0 +1,45 @@
+@charset "UTF-8";
+table{
+	width:320px;
+	border:1px solid black;
+	margin:auto;
+	margin-top:40px;
+}
+td{
+	border:1px solid black;
+}
+#td1{
+	font-size:20px;
+	font-weight:bold;
+}
+#tr3{
+	height:270px;
+}
+#td3{
+	text-align:center;
+}
+
+#tr6{
+
+}
+#td6{
+	text-align:center;
+}
+#postFeed{
+	background-color:black;
+	color:white;
+	font-size:20px;
+	height:36px;
+	cursor: pointer;
+}
+
+img{
+    width: 200px;
+    height:200px; 
+    border-radius: 70%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 1.5vh;
+    border: solid black 2px;
+
+}

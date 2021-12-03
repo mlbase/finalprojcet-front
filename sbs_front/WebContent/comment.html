@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>Comment</title>
 <link rel="stylesheet" href="cssKwak/comment.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
 	<input type="hidden" id="nickname" name="nickname">
 	<div id="content-frame">
 	<textarea name="content"></textarea>
-	<button type="button" id="postcomment">작성</button>	
+	<button type="button" id="postcomment" onclick="refreshPage()">작성</button>	
 	</div>
 	<input type=hidden id=feedSeq name=feedSeq>
 	
@@ -26,13 +26,17 @@
 	</div>
 <!--보내야할 정보 1.nickname, content, feed_seq, reg_date  -->	
 </div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 let ses = JSON.parse(sessionStorage.getItem("login"));
 //alert(JSON.stringify(ses));
 
 let parsing = location.href.split("?");
 //alert(parsing[1]);
 $("#feedSeq").val(parsing[1]);
+
+function refreshPage(){
+	window.location.reload();
+}
 
 function getLike(seq){
 	let result = 0;
@@ -93,8 +97,8 @@ $.ajax({
 			html.push("<span id='nickname'>"+item.nickname+"</span>"+"&nbsp;&nbsp;&nbsp;"+"<span id=regdate>"+item.regDate+"</span>");
 			html.push("<div id='content'>"+item.content+"</div>");
 			
-			html.push("<button id='btn1' onclick='likebtn(`"+nickname+"`,`"+item.seq+ "`)'><img id='img1' src='images/thumbsUp2.png'></button>");
-			html.push(likecount);
+			html.push("<button id='btn1' item-seq="+"'"+item.seq+"'"+""+"onclick='likebtn(`"+nickname+"`,`"+item.seq+ "`)'><img id='img1' src='images/thumbsUp2.png'></button>");
+			html.push("<span id=\"like_cnt\">"+likecount+"<span>");
 			html.push("</div>")
 		})
 		$('.comments').append(html.join(''));
@@ -105,13 +109,23 @@ $.ajax({
 });
 
 function likebtn(nickname, commentSeq) {
+	
+	var obj = null;
+	$.each(jQuery('.comment-box > button'), function(index, item){
+		if(jQuery(item).attr('item-seq') == commentSeq){
+			obj = item;
+		} 
+	});
+	obj = jQuery(obj).siblings('span#like_cnt');
 	$.ajax({
 		url:"http://localhost:3000/like",
 		type:"post",
 		data : {"nickname":nickname, "commentSeq":commentSeq, "isLike": 1},
 		success: function(resp){
-			alert(resp);
+			//alert(resp);
 			if(resp == 'OK'){
+				var cnt = Number(obj.text())+1;
+				jQuery(obj).text(cnt);
 				alert("좋아요를 누르셨습니다.");
 			}
 			if(resp == 'already'){
@@ -127,6 +141,7 @@ function likebtn(nickname, commentSeq) {
 };
 	
 
-</script>
+</script> -->
+<script type="text/javascript" src="javascript/comment.js"></script>
 </body>
 </html>

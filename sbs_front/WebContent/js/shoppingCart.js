@@ -1,20 +1,12 @@
+let qdata = {};
+
 let basket = {
     totalCount: 0, 
     totalPrice: 0,
-    //체크한 장바구니 상품 비우기
-    delCheckedItem: function(){
-        document.querySelectorAll("input[name=buy]:checked").forEach(function (item) {
-            item.parentElement.parentElement.parentElement.remove();
-        });
-        //AJAX 서버 업데이트 전송
-    
-        //전송 처리 결과가 성공이면
-        this.reCalc();
-        this.updateUI();
-    },
+   
     //장바구니 전체 비우기
     delAllItem: function(){
-        document.querySelectorAll('.row.data').forEach(function (item) {
+        document.querySelectorAll('.row').forEach(function (item) {
             item.remove();
           });
           //AJAX 서버 업데이트 전송
@@ -22,62 +14,262 @@ let basket = {
           //전송 처리 결과가 성공이면
           this.totalCount = 0;
           this.totalPrice = 0;
-          this.reCalc();
-          this.updateUI();
+          
     },
-    //재계산
-    reCalc: function(){
-        this.totalCount = 0;
-        this.totalPrice = 0;
-        document.querySelectorAll(".p_num").forEach(function (item) {
-            if(item.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.firstElementChild.checked == true){
-                var count = parseInt(item.getAttribute('value'));
-                this.totalCount += count;
-                var price = item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute('value');
-                this.totalPrice += count * price;
-            }
-        }, this); // forEach 2번째 파라메터로 객체를 넘겨서 this 가 객체리터럴을 가리키도록 함. - thisArg
-    },
-    //화면 업데이트
-    updateUI: function () {
-        document.querySelector('#sum_p_num').textContent = '상품갯수: ' + this.totalCount.formatNumber() + '개';
-        document.querySelector('#sum_p_price').textContent = '합계금액: ' + this.totalPrice.formatNumber() + '원';
-    },
-    //개별 수량 변경
-    changePNum: function (pos) {
-        var item = document.querySelector('input[name=p_num'+pos+']');
-        var p_num = parseInt(item.getAttribute('value'));
-        var newval = event.target.classList.contains('up') ? p_num+1 : event.target.classList.contains('down') ? p_num-1 : event.target.value;
-        
-        if (parseInt(newval) < 1 || parseInt(newval) > 99) { return false; }
-
-        item.setAttribute('value', newval);
-        item.value = newval;
-
-        var price = item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute('value');
-        item.parentElement.parentElement.nextElementSibling.textContent = (newval * price).formatNumber()+"원";
-        //AJAX 업데이트 전송
-
-        //전송 처리 결과가 성공이면    
-        this.reCalc();
-        this.updateUI();
-    },
+   
+    
     checkItem: function () {
         this.reCalc();
         this.updateUI();
     },
-    delItem: function () {
+    delItem: function (seq) {
+		$.ajax({
+			url:"http://localhost:3000/wishdelete",
+			type : "get",
+			data : {"seq":seq},
+			success : function(msg){
+				let resp = "삭제에 실패했습니다";
+				if(msg == "YES"){
+					resp="삭제에 성공했습니다";
+				};
+				
+				alert(resp);
+			},
+			error : function(){
+				alert('error');
+			}
+		});
+	
         event.target.parentElement.parentElement.parentElement.remove();
         this.reCalc();
         this.updateUI();
-    }
+		doSum();
+		doSum1();
+    },
+ 	saveItem: function(){
+		let param = {};
+		/*
+		$(".book").each(function(index, item){
+			//alert(item.children('img').attr('src'));
+			alert(item);		
+		});*/
+		
+		let pnum = document.getElementsByClassName("img");
+			
+		
+		sessionStorage.setItem("sum",qdata);
+		
+		location.href="http://localhost:8090/sbs_front/base.html?checkout.html";
+	}
 }
 
-// 숫자 3자리 콤마찍기
-Number.prototype.formatNumber = function(){
-    if(this==0) return 0;
-    let regex = /(^[+-]?\d+)(\d{3})/;
-    let nstr = (this + '');
-    while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
-    return nstr;
-};
+$(document).on("click", "#saveItem", function(){	
+	
+	let param = {};
+	
+	let srcArr = [];	
+	let src = document.getElementsByClassName("img");
+//	alert(src[0].innerHTML);
+
+	for(i = 0;i < src.length; i++){
+		let img = src[i].innerHTML;
+		
+		let start = img.indexOf("\"");
+		let end = img.lastIndexOf("\"");
+	//	alert(start);
+	//	alert(end);
+		
+		let imgSrc = img.substring(start + 1, end);
+	//	alert(imgSrc);	
+		srcArr[i] = imgSrc;	
+	}
+	
+	for(i = 0;i < srcArr.length; i++){
+		//alert(srcArr[i]);
+	}
+		
+	
+	let title = document.getElementsByClassName("title");
+//	alert(src[0].innerHTML);
+
+	for(i = 0;i < title.length; i++){
+		let t = title[i].innerHTML;
+		//alert(t);
+	}
+	
+	let p_price = document.getElementsByClassName("p_price");
+//	alert(src[0].innerHTML);
+
+	for(i = 0;i < p_price.length; i++){
+		let b = p_price[i].innerHTML;
+		//alert(b);
+		//console.log(b);
+	}
+	let p_num = document.getElementsByClassName("p_num");
+//	alert(src[0].innerHTML);
+
+	for(i = 0;i < p_num.length; i++){
+		let c = p_num[i].value;
+		//alert(c);
+		//console.log(c);
+	}
+	let sum=document.getElementsByClassName("sum");
+	for(i = 0;i < sum.length; i++){
+		let d = sum[i].innerHTML;
+		//alert(d);
+		//console.log(c);
+	}
+	
+	
+	
+	let seq = document.getElementsByClassName("seq");
+//	alert(src[0].innerHTML);
+
+	for(i = 0;i < seq.length; i++){
+		let s = seq[i].value;
+		//alert(s);
+	}
+	
+	let shopList = new Array() ;
+	
+	for(i=0;i<seq.length;i++){
+		var ses=new Object();
+		
+		ses.img=srcArr[i];
+		ses.title=title[i].innerHTML;
+		ses.p_price=p_price[i].innerHTML;
+		ses.p_num=p_num[i].value;
+		ses.seq=seq[i].value;
+		ses.sum=sum[i].innerHTML;
+		
+		 shopList.push(ses);		
+		
+	}
+	
+	
+	let slist = JSON.stringify(shopList);
+	console.log(shopList);
+	sessionStorage.setItem("shopList", slist);
+	
+	location.href="http://localhost:8090/sbs_front/base.html?checkout.html";
+	
+	
+	
+});
+
+
+		let ses = JSON.parse(sessionStorage.getItem("login"));
+		$(document).ready(function(){
+			
+			$.ajax({	
+				url:"http://localhost:3000/wishlist",
+				type:"get",
+				data:{ id : ses.id },	
+				success:function( resp ){
+					//alert(JSON.stringify(resp));
+					
+					
+					$.each(resp, function(index, item){
+						
+					
+						
+						/* let data="<tr id='cart_item' name=item><td><input type=checkbox name='buy' onclick=javascript:basket.checkItem()></td>";
+						 */
+						let data="<tr name='item' class='book'>";
+						data+="<td><div class='img'><img src='" + item.filename +"'></div></td>";
+					    data+="<td><div class='title'>"+ item.title+"/ "+item.writer+ "</div></td>";
+						data+="<td><div class='p_price' name='p_price'>" + item.price+ "</div></td>";
+						data+="<td><div class='num'><div class='updown'><input type='text' name='p_num'  size='2' maxlength='4' class='p_num' value='" 
+						+ item.bookCount + "' priceval=" + item.price + " sumval='sum" + index + "'>개</div></div></td>";
+						data+="<td><div class='sum' name='sum' id='sum" + index + "'>" + (item.bookCount * item.price) + "</div></td>"
+						data+="<td><div class='basketcmd'><a href='javascript:void(0)' "+
+						"class='abutton btn btn-danger btn-sm' onclick='javascript:basket.delItem(" + item.seq+");''>삭제</a></div></td>"
+						data+="<input type='hidden' class='seq' name='seq' value='" + item.bookSeq + "' ></tr>";
+					
+						 
+						$("#row").append(data);
+						
+						
+					});
+					
+					doSum();
+					doSum1();
+					
+				},	 
+				error:function(){
+					alert('error');
+				},
+			});
+			
+			
+			$(document).on("change", ".p_num", function(){
+				$("#" + $(this).attr("sumval")).text($(this).val() * $(this).attr("priceval"));
+				//document.getElementById("'" + $(this).attr("sumval")).text = "테스트";
+				doSum();
+				doSum1();
+			});
+			
+			
+						
+		});		
+	
+		
+
+		
+		
+		function doSum(){ 
+		//	alert('doSum()');
+			
+			let pnum = document.getElementsByClassName("p_num");
+			//alert(pnum);
+			
+			let psum = 0;
+			for(i = 0;i < pnum.length; i++){
+			//	alert(pnum[i].value);
+				psum += parseInt(pnum[i].value);
+			}
+			//alert(psum);
+			
+			
+			$("input[name=sum_p_num]").val(psum);
+			
+			qdata.psum = psum;
+			
+			
+		}
+			
+
+		function doSum1(){ 
+			//alert('doSum1()');
+			let ppsum=0;
+			
+			$(".sum").each(function(){
+				let pprice= parseInt($(this).html());
+				//console.log(pprice);
+				ppsum += pprice; 	
+			});
+			//alert(pprice.length);
+			
+			
+			
+			//alert(parseInt(pprice[0]));
+			/*for(i = 0;i < pprice.length; i++){
+				console.log(pprice);
+				ppsum += parseInt(pprice[i]);
+			}*/
+			//alert(ppsum);
+			$("#sum_p_price").val(ppsum); 
+			
+			qdata.ppsum = ppsum;
+		}
+			
+
+
+
+
+
+
+
+
+
+

@@ -41,7 +41,7 @@ $(document).ready(function(){
 			//	alert('success');
 				if(resp == "OK"){
 					alert("책정보 업로드에 성공했습니다.");	
-					location.href = "index.html";
+					location.href = "base.html?main/bookwrite.html";
 				}else{
 					alert("책정보 업로드에 실패했습니다.");
 				}			

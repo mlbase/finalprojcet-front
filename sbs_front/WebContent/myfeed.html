@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>작성자 게시물 확인하기</title>
+<link rel="stylesheet" href="cssKwak/myfeed.css">
+</head>
+<body>
+<div class="container1">
+	<div class="left"></div>
+	<div class="picture">
+		<div class="profile-image">
+			<img src="?" id="img-thumbnail1" class="img-thumbnail1" onerror=this.src="images/profile.jpg" >		
+		</div>	
+	<div id=updateProfile>
+	<button id="imgPopBtn" type="button" onclick="update_profile_pop()"><img id='cameraIcon' src='images/camera.png'></button>
+	</div>
+	<div id="profile-nickname"></div>
+	<div id="profile-birth">00/00</div>
+	<div id="profile-email">abc123@naver.com</div>
+	<div class="button-frame">
+		<button id="messagePopBtn" type="button" onclick="message_pop()"><img id='chatIcon' src='images/chatIcon.png'></button>
+	</div>
+	</div>
+	
+	<div class="info">
+		<div class="title2">
+		Intro&nbsp;
+			<button id="updateIntro" type="button">
+				<img id='update1' src='images/update.png'>
+			</button>
+		</div>
+		
+		<div id="intro">
+		</div>
+	
+		<div id="updateForm">
+		<form id="introData">
+		<input type="hidden" id="nickname" name="nickname">
+		<textarea name="introduce"></textarea>
+		<button id="postIntro" type="button">수정</button>
+		</form>
+		</div>
+	
+<!-- 		<div class="title2">
+		Interest Tags&nbsp;
+		<button id="updateInterest" type="button"><img id='update1' src='images/update.png'></button>
+		</div>
+		<div id="interestTags">
+		'어린왕자' '연금술사' '이것이 오라클이다'
+		</div>	 -->
+	</div>
+	<div class="content"><br>
+		 <ul class="infinite-list">
+		 <span id="title1">작성자 게시물 확인하기</span>
+		 <button id="feedWriteBtn" onclick="feed_write_pop()" type="button"><img id='FeedWriteIcon' src='images/FeedWriteIcon.png'></button>
+		 </ul>
+		
+	</div>
+	
+	
+	
+	<div class="right"></div>
+</div>
+</body>
+<script type="text/javascript" src="javascript/myfeed.js" charset="utf-8"></script>
+</html>

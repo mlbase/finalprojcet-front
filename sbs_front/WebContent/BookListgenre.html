@@ -54,6 +54,7 @@ let sortingname = urlName.get(parsingGenre[2]);
 let rowsperpage = 4;
 //getlist(1,rowsperpage,sortingname);
 booksortCount(sortingname);
+getlist(1, rowsperpage, sortingname);
 
 function booksortCount(sortname) {
 	
@@ -127,7 +128,7 @@ function getlist(page, perpage, sortname){
 		 	$.each(resp, function (index, item) {
 				data += "<div class='col-md-3'>";
 			 	data += "<img src='" + item.filename + "'><br>";
-			 	data += "<a href=''>" + item.title + "<a>";
+			 	data += "<a href='base.html?singlePage.html?"+item.seq+"'>" + item.title + "<a>";
 			 	data += "<p>지은이:" + item.writer + "</p>";
 			 	data += "<p>" + item.price + "원</p>";
 			 	data += "</div>";
@@ -139,7 +140,11 @@ function getlist(page, perpage, sortname){
 		}
 	});
 }
-$("#gosearch").click(getlist(1,rowsperpage,sortingname));
+$("#gosearch").click(function(){
+	 booksortCount(sortingname);
+	 getlist(1,rowsperpage,sortingname);
+	 
+});  
 
 </script>
 

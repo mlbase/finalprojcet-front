@@ -1,0 +1,158 @@
+@charset "UTF-8";
+.container1{
+	display: grid;
+	grid-template-columns: 240px 240px;
+	grid-template-rows:  55px 95px 555px;
+	height: 700px;
+	grid-template-areas:
+						'targetgrid targetgrid'
+						'writegrid writegrid'
+						'recgird sentgird';
+	
+					
+}
+.container1 div {
+	/* background-color: white; */
+	 /* border: solid black 1px; */
+	 /* border:none;  */
+}
+.targetgrid{
+	grid-area:targetgrid;
+	border-bottom: solid 1px !important;
+}
+
+.writegrid{
+	grid-area:writegrid;
+	border-bottom: solid 1px !important;
+}
+.recgird{
+	grid-area:recgird;
+}
+.sentgird{
+	grid-area:sentgird;
+}
+.listbtn{
+	width:62px;
+	height:50px;
+	cursor:pointer;
+	background-color:lightblue;
+	color:black;
+	font-size:15px;
+}
+#receiveId{
+	font-weight:bold;
+	font-size:20px;
+}
+#notice{
+	font-size:15px;
+	color:gray;
+}
+textarea{
+	float:left;
+	height:54px;
+	width:410px;
+}
+#send{
+	float:left;
+	margin-left:2px;
+	height:57px;
+	cursor:pointer;
+	background-color:lightblue;
+	color:black;
+	font-size:15px;
+}
+
+#mymessage{
+	float:left;
+}
+#message{
+	float:left;
+}
+#content1{
+	float:left;
+}
+#regDate1{
+	float:left;
+	font-size:12px;
+	color:gray;
+}
+#content2{
+	float:right;
+}
+#regDate2{
+	float:right;
+	font-size:12px;
+	color:gray;
+}
+#title1{
+	border-bottom:solid 1px;
+	height:25px;
+	width:230px;
+	margin-top:10px;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+#title2{
+	border-bottom:solid 1px;
+	height:25px;
+	width:230px;
+	margin-top:10px;
+	margin-bottom:10px;
+	font-weight:bold;
+}
+#img1{
+	width:20px;
+	height:20px;
+}
+
+.talkbubble div{
+	background-color:lightblue;
+}
+.talkbubble {
+  position: relative;
+  width: 180px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid lightblue;
+  background-color: lightblue;
+  margin-left: 20px;
+}
+
+.talkbubble:before {
+  content:"";
+  position: absolute;
+  right: 100%;
+  top: 17px;
+  width: 0;
+  height: 0;
+  
+  border-top: 10px solid transparent;
+  border-right: 15px solid lightblue;
+  border-bottom: 10px solid transparent;
+}
+.talkbubble2 {
+  position: relative;
+  width: 180px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid lightblue;
+  background-color: lightblue;
+  margin-right: 20px;
+}
+
+.talkbubble2:before {
+  content:"";
+  position: absolute;
+  left: 100%;
+  top: 17px;
+  width: 0;
+  height: 0;
+  
+  border-top: 10px solid transparent;
+  border-left: 15px solid lightblue;
+  border-bottom: 10px solid transparent;
+}
+
+

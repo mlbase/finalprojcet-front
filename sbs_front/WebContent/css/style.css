@@ -60,7 +60,7 @@ a.bookTitle {
 }
 
 /* 메인 */
-.main1 {
+.main {
 	position: relative;
 	grid-area: main;
 }
@@ -85,16 +85,16 @@ a.bookTitle {
 
 /* 서지정보 */
 .right {
-	margin: 0 0 0 40px;
+	margin: 0 0 0 50px;
 	padding: 0px;
 	float: left;
-	width:560px;
+	width:500px;
 }
 .bgInfo {
 	margin:0;
 	padding: 5px 0 0 0;
 	float: left;
-	width: 560px;
+	width: 500px;
 	text-align: left;
 	font-size: 15px;
 	line-height: 1.5;
@@ -141,14 +141,20 @@ a.bookTitle {
 	color: #222;
 	line-height: 1.1;
 }
+
+
 .inputBox {
 	float: left;
-	border: 1px solid #cdcdcd;
 	margin: 0 10px 0 0;
 	padding: 0;
-	width: 91px;
+	width: 100px;
 }
-
+#wishlist {
+	font-size: 12px;
+}
+.wishlistBox {
+	width:100px;
+}
 .formInput {
 	border: 0;
 	padding: 11px 5px 11px 5px;

@@ -1,19 +1,30 @@
 @charset "UTF-8";
 .container1{
 	display: grid;
-	grid-gap: 10px;
 	grid-template-columns: 20vw 60vw 20vw;
-	height: 100vh;
+	height: 930px;
 	grid-template-areas:'left content right';
 	margin-bottom:1em;					
 						
 }
 .container1 div {
 	background-color: white;
-	padding:20px;
-	border: 1px solid #000;
+	padding:0px;
+	border: none;
+	/* border: solid 1px black; */
 }
-
+.infinite-list div {
+	margin-left:45px;
+}
+a{
+	text-decoration:none;
+}
+a:link{
+	color:black; text-decoration:none;
+}
+a:visited{
+	color:black; text-decoration:none;
+}
 .left{
 	grid-area:left;
 }
@@ -23,22 +34,79 @@
 }
 .infinite-list{
   /* We need to limit the height and show a scrollbar */
-  width: 200px;
-  height: 300px;
+  width:800px;
+  height: 900px;
   overflow: auto;
 
   /* Optional, only to check that it works with margin/padding */
   margin: auto;
+  margin-top: 15px;
   padding: 20px;
-  border: 10px solid black;
+  border: 5px groove;
 }
 /* Optional eye candy below: */
-li {
-  padding: 10px;
-  list-style-type: none;
+.feed-frame{
+	padding:10px;
+	margin-top:30px;
 }
-li:hover {
-  background: royalblue;
+#nick{
+	font-size:20px;
+	font-weight:bold;
+}
+#regi{
+	font-size:15px;
+	color:gray;
+}
+#feed-img-frame{
+	width:556px;
+}
+#feed-img{
+	width:100%;
+	height:100%;
+}
+#img1{
+	width:15px;
+	height:15px;
+}
+#btn1{
+	background-color:white;
+	border:none;
+	cursor:pointer;
+}
+#commenticon{
+	width:20px;
+	height:20px;
+}
+#commentPopBtn{
+	background-color:white;
+	border:none;
+	cursor:pointer;
+}
+#feedcontent{
+	margin-top:20px;
+}
+#likecount1{
+	font-size:20px;
+	font-weight:bold;
+}
+#cntComment{
+	font-size:20px;
+	font-weight:bold;
+}
+#title1{
+	font-size:25px;
+	font-weight:bold;
+	vertical-align:middle;
+}
+#feedWriteBtn{
+	background-color:white;
+	border:none;
+	cursor:pointer;
+	vertical-align:middle;
+}
+#FeedWriteIcon{
+	width:30px;
+	height:30px;
 }
 .right{
 	grid-area:right;

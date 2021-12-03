@@ -2,18 +2,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>Feed</title>
 <link rel="stylesheet" href="cssKwak/Feed.css">
 </head>
 <body>
 <div class="container1">
 	
-	<div class="left">left</div>
+	<div class="left"></div>
 	
-	<div class="content">content</div>		
+	<div class="content">
+		
+		
+		<ul class="infinite-list">
+		<span id="title1">최신 피드</span>
+		<button id="feedWriteBtn" onclick="feed_write_pop()" type="button"><img id='FeedWriteIcon' src='images/FeedWriteIcon.png'></button>
+		</ul>
+		
+	</div>		
 	
-	<div class="right">right</div>
+	<div class="right"></div>
 	
 </div>
+
+
+<script type="text/javascript" src="javascript/Feed.js">
+
+</script>
 </body>
 </html>
